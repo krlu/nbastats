@@ -31,7 +31,7 @@ def get_player_box_scores(year, output_dir, delay=3):
     players_in_season = client.players_season_totals(season_end_year=year)
 
     # create new directory for year
-    new_dir = f"./{output_dir}/{year}"
+    new_dir = f"./data/{output_dir}/{year}"
     is_exist = os.path.exists(new_dir)
     if not is_exist:
         os.makedirs(new_dir)
@@ -111,7 +111,7 @@ def get_all_player_box_scores_all_time(start_year, end_year):
 
 
 def get_all_team_schedules_all_time(start_year, end_year, output_dir="schedules"):
-    new_dir = f"./{output_dir}/"
+    new_dir = f"./data/{output_dir}/"
     is_exist = os.path.exists(new_dir)
     if not is_exist:
         os.makedirs(new_dir)
@@ -126,7 +126,7 @@ def get_all_team_schedules_all_time(start_year, end_year, output_dir="schedules"
 
 
 def get_schedule(year):
-    with open(f'./schedules/{year - 1}_{year}_season.json') as f:
+    with open(f'./data/schedules/{year - 1}_{year}_season.json') as f:
         d = json.load(f)
         return d
 
@@ -160,6 +160,7 @@ def get_team_play_by_play(start_year, end_year):
         get_team_play_by_play_by_year(year)
 
 
+# requires this fix - https://github.com/jaebradley/basketball_reference_web_scraper/issues/234
 def get_team_play_by_play_by_year(year, output_dir="team_play_by_play", min_date=None, delay=15):
     """
     :param year: Ending year of season
@@ -167,7 +168,7 @@ def get_team_play_by_play_by_year(year, output_dir="team_play_by_play", min_date
     :param output_dir: Directory for all play by play data - defaults to "./team_play_by_play
     :return: None
     """
-    new_dir = f"./{output_dir}/{year}"
+    new_dir = f"./data/{output_dir}/{year}"
     is_exist = os.path.exists(new_dir)
     if not is_exist:
         os.makedirs(new_dir)
