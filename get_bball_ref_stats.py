@@ -5,7 +5,7 @@ from datetime import datetime
 
 import requests
 from basketball_reference_web_scraper import client, errors
-from basketball_reference_web_scraper.data import OutputType, TEAM_NAME_TO_TEAM, Team
+from basketball_reference_web_scraper.data import OutputType, TEAM_NAME_TO_TEAM
 
 
 # https://jaebradley.github.io/basketball_reference_web_scraper/api/
@@ -166,6 +166,7 @@ def get_team_play_by_play_by_year(year, output_dir="team_play_by_play", min_date
     :param year: Ending year of season
     :param delay: time delay for endpoint querying (in seconds), default value 15
     :param output_dir: Directory for all play by play data - defaults to "./team_play_by_play
+    :param min_date: enables skipping of game data for games before specified date
     :return: None
     """
     new_dir = f"./data/{output_dir}/{year}"
@@ -212,4 +213,4 @@ def get_pbp_helper(home_team_str, away_team_str, year, month, day, out_dir, day_
             get_pbp_helper(home_team_str, away_team_str, year, month, day, out_dir, new_offset, not is_negative)
 
 
-get_team_play_by_play(1985, 2018)
+get_team_play_by_play(1985, 2023)
